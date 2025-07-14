@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codeverse - Portofoliu</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #a678b4;
+      --text: #2e2e2e;
+      --muted: #6a6a6a;
+      --glass: rgba(255, 255, 255, 0.2);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --scroll-button-bg: #a678b4;
+      --scroll-button-hover: #9261a3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+
+    html, body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f8e4d9, #f3d6e0, #e5d3f2);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      color: var(--text);
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header, footer {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1.5rem 2rem;
+      background: var(--glass);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header {
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary);
+      user-select: none;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 100px;
+      text-align: center;
+      opacity: 0; /* inițial pentru animație GSAP */
+      transform: translateY(50px);
+    }
+
+    h1, h2 {
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .technologies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .tech-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tech-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(166, 120, 180, 0.4);
+    }
+
+    .tech-card:hover i {
+      color: #8a529b;
+    }
+
+    .fun-facts {
+      margin-top: 30px;
+    }
+
+    .fun-facts p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    /* Butoane Proiecte si Contact */
+    .buttons-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cv-button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(166, 120, 180, 0.5);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .cv-button:hover {
+      background-color: #9261a3;
+      transform: scale(1.05);
+    }
+
+    /* Iconițe sociale în footer */
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-links a:hover {
+      color: #9261a3;
+      transform: scale(1.2);
+    }
+
+    /* Scroll to top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background-color: var(--scroll-button-bg);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 12px rgba(166, 120, 180, 0.6);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 999;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: var(--scroll-button-hover);
+      transform: scale(1.1);
+    }
+
+    /* Cursor personalizat */
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 25px;
+      height: 25px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+      z-index: 10000;
+      mix-blend-mode: difference;
+      background-color: transparent;
+    }
+
+    .cursor.hovered {
+      background-color: var(--primary);
+      transform: translate(-50%, -50%) scale(1.5);
+      border-color: transparent;
+    }
+  </style>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <header>
+    <div class="logo">Codeverse</div>
+  </header>
+
+  <main>
+    <section id="home">
+      <h1><i class="fas fa-code"></i> Bine ai venit în <span>Codeverse</span></h1>
+      <p>Explorează universul meu digital, unde estetica soft și creativitatea creează experiențe web memorabile.</p>
+      <div class="buttons-container">
+        <a href="proiecte.html" class="cv-button"><i class="fas fa-folder-open"></i> Proiecte</a>
+        <a href="contact.html" class="cv-button"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2><i class="fas fa-user"></i> Despre mine</h2>
+      <p>Sunt o dezvoltatoare web pasionată, cu o afinitate pentru designuri elegante și interfețe care spun o poveste. Iubesc să transform ideile în site-uri funcționale, animate cu GSAP și rafinate cu HTML, CSS și JavaScript.</p>
+    </section>
+
+    <section id="toolbox">
+      <h2><i class="fas fa-toolbox"></i> Toolbox</h2>
+      <div class="technologies">
+        <div class="tech-card"><i class="fab fa-html5"></i><p>HTML5 – Structura solidă a fiecărui proiect</p></div>
+        <div class="tech-card"><i class="fab fa-css3-alt"></i><p>CSS3 – Stiluri care dau viață paginilor</p></div>
+        <div class="tech-card"><i class="fab fa-js"></i><p>JavaScript – Logica și interactivitatea din spate</p></div>
+        <div class="tech-card"><i class="fas fa-wave-square"></i><p>GSAP – Animații fluide și naturale</p></div>
+        <div class="tech-card"><i class="fab fa-figma"></i><p>Figma – Design colaborativ și prototipuri</p></div>
+        <div class="tech-card"><i class="fab fa-github"></i><p>GitHub – Versionare și colaborare eficientă</p></div>
+        <div class="tech-card"><i class="fas fa-code"></i><p>VS Code – Editorul meu de încredere</p></div>
+      </div>
+    </section>
+
+    <section id="proces">
+      <h2><i class="fas fa-project-diagram"></i> Procesul meu de lucru</h2>
+      <p>1. Discuție inițială: Înțeleg cerințele și viziunea ta.<br>2. Design & planificare: Creez wireframe-uri și moodboards.<br>3. Dezvoltare: Cod curat, componentizat, animat.<br>4. Feedback: Revizuim împreună și ajustăm ce e nevoie.<br>5. Lansare: Site-ul e live și optimizat.</p>
+    </section>
+
+    <section id="fun-facts">
+      <h2><i class="fas fa-mug-hot"></i> Fun facts despre mine</h2>
+      <div class="fun-facts">
+        <p>☕ Nu pot lucra fără cafea bună dimineața.</p>
+        <p>🎨 Iubesc combinațiile de culori pastel și estetica soft.</p>
+        <p>💡 Cele mai bune idei vin noaptea, când e liniște.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2025 Codeverse. Design elegant. Cod curat. Vibrație creativă.</div>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/username" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/username" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://twitter.com/username" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animație secțiuni pe scroll
+    gsap.utils.toArray("section").forEach(section => {
+      gsap.fromTo(section, 
+        { opacity: 0, y: 50 }, 
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        });
+    });
+
+    // Cursor personalizat
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Hover efecte pe butoane și linkuri sociale
+    const hoverTargets = document.querySelectorAll("a, button, .cv-button, .tech-card");
+    hoverTargets.forEach(el => {
+      el.addEventListener("mouseenter", () => cursor.classList.add("hovered"));
+      el.addEventListener("mouseleave", () => cursor.classList.remove("hovered"));
+    });
+
+    // Scroll to top button logic
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.style.display = "flex";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    });
+
+    scrollBtn.addEventListener("click", () => {
+      gsap.to(window, { scrollTo: 0, duration: 0.8, ease: "power2.out" });
+    });
+  </script>
+
+  <!-- GSAP ScrollTo Plugin pentru scroll lin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Codeverse</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8e4d9, #f3d6e0, #e5d3f2);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      color: #2e2e2e;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .contact-container {
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 40px 30px;
+      max-width: 480px;
+      box-shadow: 0 0 25px rgba(166, 120, 180, 0.2);
+    }
+    h1 {
+      color: #a678b4;
+      margin-bottom: 24px;
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    a.button {
+      display: inline-block;
+      margin: 10px 15px;
+      padding: 12px 28px;
+      background-color: #a678b4;
+      color: white;
+      font-weight: 600;
+      border-radius: 32px;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 6px 18px rgba(166, 120, 180, 0.35);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    a.button:hover {
+      background-color: #8b5ca5;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(139, 92, 165, 0.5);
+    }
+    .icon {
+      margin-right: 8px;
+      vertical-align: middle;
+      font-size: 1.3rem;
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <div class="contact-container">
+    <h1><i class="fas fa-envelope"></i> Contactează-mă</h1>
+    <p>
+      Pentru o discuție rapidă și eficientă despre proiectul tău, te invit să
+      îmi scrii pe WhatsApp la numărul <strong>0728 693 987</strong> sau să-mi
+      trimiți un email la
+      <a href="mailto:iulia_benko@yahoo.com" style="color: #8b5ca5; text-decoration: underline;">iulia_benko@yahoo.com</a>.
+    </p>
+    <p>
+      Vom programa o ședință de aproximativ 20 de minute în care vom vorbi
+      despre ideile tale și vom stabili împreună pașii pentru a construi exact
+      ceea ce îți dorești.
+    </p>
+    <p>Aștept cu nerăbdare să colaborăm!</p>
+    <a
+      class="button"
+      href="https://wa.me/40728693987"
+      target="_blank"
+      rel="noopener"
+      ><i class="fab fa-whatsapp icon"></i> Trimite mesaj pe WhatsApp</a
+    >
+    <a
+      class="button"
+      href="mailto:iulia_benko@yahoo.com"
+      ><i class="fas fa-paper-plane icon"></i> Trimite email</a
+    >
+  </div>
+</body>
+</html>

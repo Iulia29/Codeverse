@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome - Codeverse</title>
+
+  <style>
+    :root {
+      --primary: #a678b4;
+      --gradient-start: #f3d6e0;
+      --gradient-mid: #e5d3f2;
+      --gradient-end: #f8e4d9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+      background-size: 400% 400%;
+      animation: gradient 20s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 0 1rem;
+      user-select: none;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+      user-select: text;
+    }
+
+    /* Logo cerc mov pulsator lângă text */
+    .logo-circle {
+      display: inline-block;
+      vertical-align: middle;
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 25px var(--primary);
+      animation: pulseGlow 2.5s ease-in-out infinite;
+      margin-right: 1rem;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px var(--primary), 0 0 40px var(--primary);
+      }
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 40px var(--primary), 0 0 60px var(--primary);
+      }
+    }
+
+    .btn {
+      padding: 18px 56px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 48px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(166, 120, 180, 0.5);
+      transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .btn:hover {
+      background-color: #8b5ca5;
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(166, 120, 180, 0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+      .logo-circle {
+        width: 32px;
+        height: 32px;
+        margin-right: 0.5rem;
+      }
+      .btn {
+        padding: 14px 36px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    <span class="logo-circle"></span>
+    Welcome in my <strong>Codeverse</strong> world
+  </h1>
+  <a href="index.html" class="btn">See my world</a>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script>
+    gsap.fromTo("h1",
+      {opacity: 0, y: -80},
+      {opacity: 1, y: 0, duration: 1.5, ease: "power3.out"}
+    );
+
+    gsap.to(".btn", {
+      opacity: 1,
+      y: 0,
+      delay: 1.7,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+  </script>
+</body>
+</html>
+

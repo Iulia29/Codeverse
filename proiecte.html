@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codeverse - Proiecte</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #a678b4;
+      --primary-light: #c4a7d7;
+      --text-dark: #2e2e2e;
+      --text-light: #555;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --shadow-light: rgba(166, 120, 180, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    html, body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8e4d9, #f3d6e0, #e5d3f2);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    main {
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 50px;
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 5px var(--primary-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      user-select: text;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      padding: 0 10px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border-radius: 25px;
+      border: 1.5px solid var(--glass-border);
+      padding: 40px 30px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      border-color: var(--primary-light);
+      box-shadow: 0 15px 35px var(--shadow-light);
+    }
+
+    .card i {
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      transition: color 0.3s ease;
+    }
+
+    .card:hover i {
+      color: var(--primary-light);
+    }
+
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      transition: color 0.3s ease;
+      user-select: text;
+    }
+
+    .card h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .card h3 a:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 280px;
+      line-height: 1.5;
+      user-select: text;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-light);
+      margin: 60px 0 40px 0;
+      user-select: none;
+    }
+
+    /* Cursor animat */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.hovered {
+      width: 40px;
+      height: 40px;
+      border-color: var(--primary-light);
+      animation: pulseGlow 1.5s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 8px var(--primary-light), 0 0 12px var(--primary-light);
+      }
+      100% {
+        box-shadow: 0 0 16px var(--primary-light), 0 0 24px var(--primary-light);
+      }
+    }
+
+    /* Responsive tweak */
+    @media (max-width: 400px) {
+      .card p {
+        max-width: 100%;
+      }
+    }
+  </style>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <main>
+    <section id="projects">
+      <h1><i class="fas fa-folder-open"></i> Proiecte</h1>
+      <div class="projects">
+        <div class="card" tabindex="0" role="link" onclick="window.open('https://iulia29.github.io/Brewly_Caf-/', '_blank')">
+          <i class="fas fa-mug-hot"></i>
+          <h3><a href="https://iulia29.github.io/Brewly_Caf-/" target="_blank" rel="noopener noreferrer">Brewly Caf</a></h3>
+          <p>Un site de cafea cu design fresh și interfață modernă.</p>
+        </div>
+
+        <div class="card" tabindex="0" role="link" onclick="window.open('https://iulia29.github.io/Log-Line/', '_blank')">
+          <i class="fas fa-film"></i>
+          <h3><a href="https://iulia29.github.io/Log-Line/" target="_blank" rel="noopener noreferrer">Log Line</a></h3>
+          <p>Un proiect creativ pentru linia de loguri, cu UI elegant și simplu.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Codeverse. Design elegant. Cod curat. Vibrație creativă.
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray("section").forEach(section => {
+      gsap.fromTo(section,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    });
+
+    // Cursor animat
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    // Hover efect cursor pe linkuri si butoane
+    const hoverTargets = document.querySelectorAll("a, button, .card");
+    hoverTargets.forEach(el => {
+      el.addEventListener("mouseenter", () => cursor.classList.add("hovered"));
+      el.addEventListener("mouseleave", () => cursor.classList.remove("hovered"));
+    });
+  </script>
+
+</body>
+</html>
